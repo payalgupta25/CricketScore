@@ -7,4 +7,82 @@
 body{
     width: 100%;
     height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(https://static.vecteezy.com/system/resources/previews/015/708/359/non_2x/cricket-stadium-with-neon-lights-arena-vector.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: screen;
+}
+
+.events{
+    display: flex;
+    flex-direction: column;
+    background-color: #232323;
+    height: 120px;
+    width: 400px;
+    align-items: center;
+    max-width: 400px;
+    justify-content: center;
+}
+
+.first,.second{
+    display: flex;
+    padding: 7px;
+}
+
+.first .run,.second .other{
+    display: flex;
+    width: fit-content;
+    border: 1px solid #007BFF;
+    padding: 9px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.first .run{
+    border-radius: 50%;
+    width: 40px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(149, 149, 231, 0.333) 0px 1px 9px 0px;
+}
+.second .other{
+    /* width: 40px; */
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(149, 149, 231, 0.333) 0px 1px 9px 0px;
+}
+
+
+.board{
+    background-color: #232323;
+    height: auto;
+    width: 400px;
+    padding: 30px;
+    margin: 4px 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.myClass{
+    background-color: white;
+    height: fit-content;
+    width: fit-content;
+    display: inline;
+    padding: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: larger;
 }

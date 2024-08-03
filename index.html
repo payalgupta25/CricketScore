@@ -3,11 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Cricket Score</title>
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="style.css">  
+
 </head>
 <body>
+
+    <div class="board"></div>
     
+    <div class="events">
+        <div class="first">
+            <div class="run" id="one" onclick="show(this)">1</div>
+            <div class="run" id="two" onclick="show(this)">2</div>
+            <div class="run" id="three" onclick="show(this)">3</div>
+            <div class="run" id="four" onclick="show(this)">4</div>
+            <div class="run" id="five" onclick="show(this)">5</div>
+            <div class="run" id="six" onclick="show(this)">6</div>
+        </div>
+        <div class="second">
+            <div class="other" id="wide" onclick="show(this)">Wide Ball</div>
+            <div class="other" id="dot" onclick="show(this)">Dot Ball</div>
+            <div class="other" id="out" onclick="show(this)">Wicket</div>
+            <div class="other" id="noBall" onclick="show(this)">No Ball</div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
