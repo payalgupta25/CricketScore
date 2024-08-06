@@ -13,7 +13,7 @@ body{
     padding: 20px;
     align-items: center;
     flex-direction: column;
-    background-image: url(https://static.vecteezy.com/system/resources/previews/015/708/359/non_2x/cricket-stadium-with-neon-lights-arena-vector.jpg);
+    background-image: url(./Images/backG.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -27,7 +27,7 @@ body{
     height: 120px;
     width: 400px;
     align-items: center;
-    max-width: 400px;
+    max-width: 500px;
     justify-content: center;
 }
 
@@ -85,4 +85,37 @@ body{
     font-family: 'Orbitron', sans-serif;
     font-weight: 900;
     font-size: larger;
+}
+
+.disabledDiv {
+    opacity: 0.5; 
+    pointer-events: none; 
+}
+
+.enableBtn{
+    border-radius: 40px;
+    outline: 2px;
+    cursor: pointer;
+    border: 2px solid black ;
+    background-color: #232323;
+    color: #ffffff;
+    padding: 10px ;
+}
+
+.ScoreBoard{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+}
+.ScoreBoard h3{
+    background-color:rgba(76, 74, 77, 0.322);
+    border-radius: 10px 10px 0 0 ;
+}
+.box{
+    background-color: #ffffff;
+    width: 100px;
+    border-radius: 10px;
+    padding: 3px;
 }

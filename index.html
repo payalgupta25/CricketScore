@@ -10,6 +10,23 @@
 </head>
 <body>
 
+    <buttton class="enableBtn">Team 1 playing</buttton>
+    <h2 class="heading"></h2>
+    <div class="ScoreBoard">
+        <div class="runs box">
+            <h3>RUNS</h3>
+            <h2 class="run-Value">0</h2>
+        </div>
+        <div class="wickets box">
+            <h3>Wickets</h3>
+            <h2 class="wicket-Value">0</h2>
+        </div>
+        <div class="balls box">
+            <h3>Balls</h3>
+            <h2 class="balls-Value">0</h2>
+        </div>
+    </div>
+
     <div class="board"></div>
     
     <div class="events">
@@ -22,13 +39,15 @@
             <div class="run" id="six" onclick="show(this)">6</div>
         </div>
         <div class="second">
-            <div class="other" id="wide" onclick="show(this)">Wide Ball</div>
-            <div class="other" id="dot" onclick="show(this)">Dot Ball</div>
-            <div class="other" id="out" onclick="show(this)">Wicket</div>
-            <div class="other" id="noBall" onclick="show(this)">No Ball</div>
+            <div class="other" id="wide"    onclick="show(this)">Wide Ball</div>
+            <div class="other" id="dot"     onclick="show(this)">Dot Ball</div>
+            <div class="other" id="out"     onclick="show(this)">Wicket</div>
+            <div class="other" id="noBall"  onclick="show(this)">No Ball</div>
         </div>
+        
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
