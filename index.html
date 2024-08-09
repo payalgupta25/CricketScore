@@ -6,14 +6,41 @@
     <title>Cricket Score</title>
     <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="style.css">  
+    <link rel="stylesheet" href="loader.css">
 
 </head>
-<body>
+<body  onload="myFunction()">
 
+<<<<<<< HEAD
     <buttton class="enableBtn">Team 1 playing</buttton>
     <button class="newGame hide">New Game</button>
     <h2 class="heading"></h2>
     <div class="ScoreBoard">
+=======
+    <div id="loader" class="loader">
+        <main>
+            <div id="loader">
+              <!--cricket ball svg-->
+              <img src="https://cdn-icons-png.flaticon.com/128/1099/1099680.png" id="ball" alt="ball">
+          
+              <!--cricket bat svg-->
+              <svg id="bat" viewBox="0 0 460.84737 460.84737" xmlns="http://www.w3.org/2000/svg">
+                <path d="m460.847656 31.75-25.070312 25.078125-31.761719-31.757813 25.082031-25.070312zm0 0" fill="#a85d5d" />
+                <path d="m378.945312 50.140625 25.070313-25.070313 31.761719 31.757813-25.070313 25.070313zm0 0" fill="#7f4545" />
+                <path d="m353.878906 75.210938 25.066406-25.070313 31.761719 31.757813-25.070312 25.070312zm0 0" fill="#a85d5d" />
+                <path d="m328.808594 100.28125 25.066406-25.070312 31.761719 31.757812-25.070313 25.070312zm0 0" fill="#7f4545" />
+                <path d="m360.566406 132.039062-25.078125 25.070313-31.75-31.75 25.070313-25.078125zm0 0" fill="#a85d5d" />
+                <path d="m352.425781 190.320312-260.136719 260.140626c-13.847656 13.847656-36.296874 13.847656-50.140624 0l-31.761719-31.761719c-13.847657-13.84375-13.847657-36.296875 0-50.140625l260.140625-260.136719 25.070312 25.066406-.21875.222657-76.050781 107.808593 107.808594-76.050781.21875-.21875zm0 0" fill="#ffd2a6" />
+                <path d="m327.355469 165.25-.21875.21875-107.808594 76.050781 76.050781-107.808593.21875-.222657zm0 0" fill="#7f4545" />
+              </svg>
+            </div>
+        </main>
+    </div>
+    
+    <buttton style="visibility: hidden;" class="enableBtn">Team 1 playing</buttton>
+    <h2 style="visibility: hidden;" class="heading"></h2>
+    <div style="visibility: hidden;" class="ScoreBoard">
+>>>>>>> 4e7dd2bae1f9c1a3a34ad1d34b9dc7a5936ba5ba
         <div class="runs box">
             <h3>RUNS</h3>
             <h2 class="run-Value">0</h2>
@@ -28,9 +55,9 @@
         </div>
     </div>
 
-    <div class="board"></div>
+    <div style="visibility: hidden;" class="board"></div>
     
-    <div class="events">
+    <div style="visibility: hidden;" class="events">
         <div class="first">
             <div class="run" id="one" onclick="show(this)">1</div>
             <div class="run" id="two" onclick="show(this)">2</div>
@@ -50,5 +77,17 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="script.js"></script>
+    <script>
+        let preloader = document.querySelector(".loader");
+        setTimeout(function myFunction() {
+            preloader.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            document.querySelector(".events").style.visibility='visible';
+            document.querySelector(".board").style.visibility='visible';
+            document.querySelector(".enableBtn").style.visibility='visible';
+            document.querySelector(".heading").style.visibility='visible';
+            document.querySelector(".ScoreBoard").style.visibility='visible';
+        },4000)
+    </script>
 </body>
 </html>
