@@ -24,6 +24,27 @@ var balls = 0 ;
 var over = 0 ;
 var score=0;
 
+function flipAnimation(element) {
+    gsap.fromTo(element, 
+        {
+            rotateX: 0,
+            backgroundColor: "#ffffff", // Initial background color
+        },
+        {
+            duration: 0.5,
+            rotateX: -180,
+            transformOrigin: "50% 100%",
+            ease: "power1.inOut",
+            height:"10px",
+            width: "100%",
+            backgroundColor: "#eaeaea", // Color during the flip
+            onComplete: function() {
+                element.style.transform = 'rotateX(0deg)';
+                element.style.backgroundColor = "#ffffff"; // Reset to original color
+            }
+        }
+    );
+}
 
 function show(e){
     var newDiv = document.createElement('div');
@@ -33,8 +54,10 @@ function show(e){
     if(e.textContent==='1' || e.textContent==='2' || e.textContent==='3' || e.textContent==='4' || e.textContent==='5' || e.textContent==='6'){
         score+=parseInt(e.textContent); 
         runsShow.textContent = score ;
+        flipAnimation(runsShow); 
         balls++;
         ballShow.textContent=balls;
+        flipAnimation(ballShow);
         console.log("Balls : " , balls);
         overUpgrade();
     }
@@ -64,8 +87,10 @@ dot.addEventListener("click",()=>{
 out.addEventListener('click', ()=>{
     balls++;
     ballShow.textContent=balls;
+    flipAnimation(ballShow);
     wicket++;
     wicketsShow.textContent = wicket ;
+    flipAnimation(wicketsShow);
     if(wicket===10){
         console.log("All Out");
         heading.innerText = "All Out";
@@ -75,15 +100,19 @@ out.addEventListener('click', ()=>{
 wide.addEventListener("click" , ()=>{
     score++;
     runsShow.textContent=score ;
+    flipAnimation(runsShow); 
     balls++;
     ballShow.textContent=balls;
+    flipAnimation(ballShow);
 });
 
 noBall.addEventListener("click",()=>{
     score++;
     runsShow.textContent = score ;
+    flipAnimation(runsShow);
     balls++;
     ballShow.textContent=balls;
+    flipAnimation(ballShow);
 })
 
 

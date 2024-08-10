@@ -21,6 +21,12 @@ body{
     background-blend-mode: screen;
 }
 
+.run-Value, .wicket-Value, .balls-Value {
+    display: inline-block;
+    transform-style: preserve-3d;
+    background-color: #ffffff; /* Ensure a default background color */
+}
+
 .events{
     display: flex;
     flex-direction: column;
