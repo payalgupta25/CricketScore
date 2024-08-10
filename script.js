@@ -18,11 +18,14 @@ let wicketsShow = document.querySelector(".wicket-Value");
 let ballShow = document.querySelector(".balls-Value");
 
 
-var wicket = 0;
+var wicket = 0 ;
 var currTeam = 1 ;
 var balls = 0 ;
 var over = 0 ;
-var score=0;
+var score = 0 ;
+var scoreT1 ;
+var scoreT2 ;
+var wicketT1 ;
 
 
 function show(e){
@@ -33,22 +36,57 @@ function show(e){
     if(e.textContent==='1' || e.textContent==='2' || e.textContent==='3' || e.textContent==='4' || e.textContent==='5' || e.textContent==='6'){
         score+=parseInt(e.textContent); 
         runsShow.textContent = score ;
-        balls++;
-        ballShow.textContent=balls;
-        console.log("Balls : " , balls);
+        ballsUpdate();
         overUpgrade();
+        checkWinner();
+        team2Score()
     }
-    console.log("Score : " , score);
+}
+
+function team2Score(){
+    if(currTeam==2){
+        heading.textContent = `${scoreT1 - score} runs to be socred in ${2*6-balls} balls` ;
+        checkWinner();
+    }
+}
+
+function ballsUpdate(){
+    balls++;
+    ballShow.textContent=balls;
+}
+
+function scoreUpdate(){
+    score++;
+    runsShow.textContent=score;
+    team2Score();
 }
 
 function overUpgrade(){
     if(balls%6==0){
         over++;
         console.log("over : " , over);
-        if(over==2){
-            console.log("Match completed for the current team");
-            let scoreT1 = score ;
-            heading.textContent = `Team ${currTeam} scored ${scoreT1} runs in ${balls} balss and ${wicket} wickets are gone !!!`;
+        if(over==2 ){
+            if(currTeam==2){
+                scoreT2 = score ;
+                if(scoreT2 < scoreT1 ){
+                    heading.textContent = `Team 2 lost the match by ${scoreT1-scoreT1} runs !` ;
+                }
+                else{
+                    heading.textContent = `Team 1 won the match by ${11-wicketT1} wickets .`;
+                }
+                
+                btn.textContent = "New Game" ;
+                btn.addEventListener("click" , ()=>{
+                    reset();
+                    newGame();
+                    enable();
+                });
+            }
+            else{
+                wicketT1 = wicket ;
+                scoreT1 = score ;                
+                heading.textContent = `Team 1 scored ${scoreT1} runs in ${balls} balls and ${wicketsShow.innerText} wickets are gone !!!`;
+            }
             disable();
         }
         board.innerHTML="";
@@ -56,34 +94,65 @@ function overUpgrade(){
     }
 }
 
+function checkWinner(){
+    if(score>=scoreT1 && currTeam==2){
+        heading.textContent = `Team 2 won by ${11-wicketsShow.innerText} wickets. Hurray !!`;
+        btn.textContent = "New Game";
+        btn.addEventListener("click" , ()=>{
+            enable();
+            board.innerHTML="";
+            console.log("Board cleared");
+            scoreT1 = score = 0 ;
+            btn.textContent = "Team 1 playing";
+            wicket = 0 ;
+        });
+        disable();
+    }
+
+    if(score<scoreT1 && balls == 12){
+        heading.textContent = "Team 1 won the match !!";        
+    }
+}
+
 dot.addEventListener("click",()=>{
-    balls++;
-    ballShow.textContent=balls;
+    ballsUpdate();
+    overUpgrade();
+    checkWinner();
+    team2Score()
 })
 
 out.addEventListener('click', ()=>{
-    balls++;
-    ballShow.textContent=balls;
+    
     wicket++;
     wicketsShow.textContent = wicket ;
+
+    ballsUpdate();
+    overUpgrade();
+
     if(wicket===10){
         console.log("All Out");
         heading.innerText = "All Out";
     }
+    
+    checkWinner();
+    team2Score()
 })
 
+
+
+
 wide.addEventListener("click" , ()=>{
-    score++;
-    runsShow.textContent=score ;
-    balls++;
-    ballShow.textContent=balls;
+    scoreUpdate();
+    overUpgrade();
+    checkWinner();
+    team2Score()
 });
 
 noBall.addEventListener("click",()=>{
-    score++;
-    runsShow.textContent = score ;
-    balls++;
-    ballShow.textContent=balls;
+    scoreUpdate();
+    overUpgrade();
+    checkWinner();
+    team2Score()
 })
 
 
@@ -99,32 +168,19 @@ function disable(){
     if(currTeam == 1){
         btn.innerText = "Start playing for Team 2"
     }
-
-    if(currTeam==2){
-        btn.innerText = "Start New Game";
-    }
-
 }
 
 btn.addEventListener("click" , ()=>{
-    if(currTeam === 1){
+    if((currTeam === 1) && (wicket==10 || over==2 || balls==over*6) ){
         currTeam=2 ;
         enable();
-    }
-    if(currTeam === 2){
-        enable();
+        btn.textContent="Team 2 playing";
     }
 })
 
 function enable(){
-    score=0;
-    balls=0;
-    over=0;
-    heading.textContent="";
-    runsShow.textContent=0;
-    wicketsShow.textContent=0;
-    ballShow.textContent=0;
-    currTeam=1;
+    reset();
+    
     divs.forEach(div => {
         div.classList.remove("disabledDiv"); 
     });
@@ -132,10 +188,26 @@ function enable(){
     others.forEach(other =>{
         other.classList.remove("disabledDiv");
     })
-
-    btn.textContent="Team 2 playing"
-    
-
 };
+
+//to reset for team 2:
+function reset(){
+    score=0;
+    balls=0;
+    over=0;
+    wicket=0;
+    heading.textContent="";
+    runsShow.textContent=0;
+    wicketsShow.textContent=0;
+    ballShow.textContent=0;
+}
+
+function newGame(){
+    reset();
+    scoreT1=0;
+    scoreT2 = 0 ;
+    wicketT1=0;
+    btn.textContent="Team 1 playing";
+}
 
 
