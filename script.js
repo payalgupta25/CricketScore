@@ -58,7 +58,7 @@ function show(e){
         score+=parseInt(e.textContent); 
         runsShow.textContent = score ;
         flipAnimation(runsShow); 
-        balls++;
+
         ballShow.textContent=balls;
         flipAnimation(ballShow);
         console.log("Balls : " , balls);
@@ -151,18 +151,12 @@ dot.addEventListener("click",()=>{
 
 out.addEventListener('click', ()=>{
 
-    balls++;
-    ballShow.textContent=balls;
-    flipAnimation(ballShow);
     wicket++;
     wicketsShow.textContent = wicket ;
     flipAnimation(wicketsShow);
 
-    
-    wicket++;
-    wicketsShow.textContent = wicket ;
-
     ballsUpdate();
+    flipAnimation(ballShow);
     overUpgrade();
 
 
@@ -180,35 +174,19 @@ out.addEventListener('click', ()=>{
 
 wide.addEventListener("click" , ()=>{
 
-    score++;
-    runsShow.textContent=score ;
+    scoreUpdate();
     flipAnimation(runsShow); 
-    balls++;
-    ballShow.textContent=balls;
-    flipAnimation(ballShow);
+    checkWinner();
+    team2Score();
 });
 
 noBall.addEventListener("click",()=>{
-    score++;
-    runsShow.textContent = score ;
+    scoreUpdate();
     flipAnimation(runsShow);
-    balls++;
-    ballShow.textContent=balls;
-    flipAnimation(ballShow);
-
-    scoreUpdate();
     overUpgrade();
     checkWinner();
     team2Score()
 });
-
-noBall.addEventListener("click",()=>{
-    scoreUpdate();
-    overUpgrade();
-    checkWinner();
-    team2Score()
-
-})
 
 
 function disable(){
