@@ -57,12 +57,9 @@ function show(e){
     if(e.textContent==='1' || e.textContent==='2' || e.textContent==='3' || e.textContent==='4' || e.textContent==='5' || e.textContent==='6'){
         score+=parseInt(e.textContent); 
         runsShow.textContent = score ;
-        flipAnimation(runsShow); 
-
-        ballShow.textContent=balls;
-        flipAnimation(ballShow);
-        console.log("Balls : " , balls);
-
+        flipAnimation(runsShow);
+        
+        
         ballsUpdate();
 
         overUpgrade();
@@ -90,11 +87,11 @@ function scoreUpdate(){
 }
 
 function overUpgrade(){
-    if(balls%6==0){
+    if(balls%6===0){
         over++;
         console.log("over : " , over);
         if(over==2 ){
-            if(currTeam==2){
+            if(currTeam===2){
                 scoreT2 = score ;
                 if(scoreT2 < scoreT1 ){
                     heading.textContent = `Team 2 lost the match by ${scoreT1-scoreT1} runs !` ;
@@ -204,43 +201,60 @@ function disable(){
 }
 
 btn.addEventListener("click" , ()=>{
-    if((currTeam === 1) && (wicket==10 || over==2 || balls==over*6) ){
+    if((currTeam === 1) && (wicket==10 || over==2 || balls===over*6) ){
         currTeam=2 ;
         enable();
         btn.textContent="Team 2 playing";
     }
 })
 
-function enable(){
-    reset();
-    
+btn.addEventListener("click", () => {
+    if (btn.textContent === "New Game") {
+        newGame();  // Start a completely new game
+    } else if (currTeam === 1 && (wicket === 10 || over === 2 || balls === over * 6)) {
+        currTeam = 2;  // Switch to Team 2 when Team 1 is done
+        enable();
+        btn.textContent = "Team 2 playing";
+    }
+});
+
+function enable() {
+    reset();  // Reset UI and variables
     divs.forEach(div => {
-        div.classList.remove("disabledDiv"); 
+        div.classList.remove("disabledDiv");  // Enable run buttons
     });
-
-    others.forEach(other =>{
-        other.classList.remove("disabledDiv");
-    })
-};
-
-//to reset for team 2:
-function reset(){
-    score=0;
-    balls=0;
-    over=0;
-    wicket=0;
-    heading.textContent="";
-    runsShow.textContent=0;
-    wicketsShow.textContent=0;
-    ballShow.textContent=0;
+    others.forEach(other => {
+        other.classList.remove("disabledDiv");  // Enable other action buttons
+    });
 }
 
-function newGame(){
-    reset();
-    scoreT1=0;
-    scoreT2 = 0 ;
-    wicketT1=0;
-    btn.textContent="Team 1 playing";
+//to reset for team 2:
+function reset() {
+    score = 0;
+    balls = 0;
+    over = 0;
+    wicket = 0;
+    heading.textContent = "";
+    runsShow.textContent = 0;
+    wicketsShow.textContent = 0;
+    ballShow.textContent = 0;
+    board.innerHTML = "";  // Clear the board display
+}
+
+function newGame() {
+    reset();  // Reset the UI and the game state
+    
+    // Reset all important game variables for a fresh start
+    scoreT1 = 0;
+    scoreT2 = 0;
+    wicketT1 = 0;
+    currTeam = 1;  // Set current team to 1 for a new game
+    
+    btn.textContent = "Team 1 playing";
+    
+    // Enable all the game controls again for the new match
+    enable();
+    location.reload;         
 }
 
 
